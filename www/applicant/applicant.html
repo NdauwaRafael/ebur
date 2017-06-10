@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Include meta tag to ensure proper rendering and touch zooming -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Include jQuery Mobile stylesheets -->
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <!-- Include the jQuery library -->
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <!-- Include the jQuery Mobile library -->
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+
+<div data-role="page" id="pageone">
+  <div data-role="header" data-theme="b">
+    <h1>Ebursary | Applicant | Home</h1>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="applicant.html" data-icon="home">Home</a></li>
+        <li><a href="bursaries.html" data-ajax="false" data-icon="shop">Applications</a></li>
+        <li><a href="notifications.html" data-ajax="false" data-icon="mail">Notifications</a></li>
+        <li><a href="profile.html" data-ajax="false" data-icon="user">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <h5>Top Bursury Offers You Qualify For:</h5>
+    <hr>
+    <ul data-role="listview" data-inset="true">
+          <li>
+            <a href="#">
+            <img src="../icons/48/new-48.png">
+            <h2>USA Bursary</h2>
+            <p>USA Bursary for Orphans in Universities </p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+            <img src="../icons/48/new-48.png">
+            <h2>GOK Bursary</h2>
+            <p>GOK Bursary for Tertialy Students</p>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+            <img src="../icons/48/new-48.png">
+            <h2>UN Bursary 2017</h2>
+            <p>UN Bursury for High achievers</p>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+            <img src="../icons/48/purchase_order-48.png">
+            <h2>EQUITY Bank Bursary 2017</h2>
+            <p>Wing to Fly Bursary For Kenyan Univeristies</p>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+            <img src="../icons/48/purchase_order-48.png">
+            <h2>Mombasa County Government University Bursaries</h2>
+            <p>UN Bursury for High achievers</p>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+            <img src="../icons/48/purchase_order-48.png">
+            <h2>CDF Funds Bursary 2017</h2>
+            <p>All students in learning institutions</p>
+            </a>
+          </li>
+        </ul>
+
+  </div>
+
+  <div data-role="footer" data-theme="b">
+    <h1>2017 | Ebursary | All Rights</h1>
+  </div>
+</div>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script>
+    if (localStorage.getItem("applicant_email") === null) {
+       window.location.href="login.html";
+    }
+</script>
+</body>
+</html>

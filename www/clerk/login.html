@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Ebursary Mobile Application</title>
+
+        <!-- Include jQuery Mobile stylesheets -->
+        <link rel="stylesheet" href="../tools/jquery.mobile-1.4.5.js">
+
+        <!-- Include the jQuery library -->
+        <script src="../assets/jquery-3.2.1.js"></script>
+
+        <!-- Include the jQuery Mobile library -->
+        <script src="../tools/jquery.mobile-1.4.5.min.js"></script>
+
+
+      </head>
+    </head>
+    <body>
+<!--To use jquery mobile tools throughout the designs-->
+
+<div data-role="page" id="pageone">
+  <div data-role="header">
+    <h4>EBursary | Clerk | Login </h4>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="../index.html" data-icon="Home">Home</a></li>
+        <li><a href="register.html" data-icon="user" >Register</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div data-role="main" class="ui-content">
+
+    <form method="post" action="/action_page_post.php">
+
+        <label for="email">Email:  </label>
+        <input type="email" name="email" id="email">
+
+        <label for="password">Password:  </label>
+        <input type="password" name="password" id="password">
+
+
+
+      <input type="button" value="Login">
+    </form>
+
+  </div>
+
+  <div data-role="footer">
+    <h1>2017 | Ebursary | All Rights </h1>
+  </div>
+</div>
+
+
+        <script type="text/javascript" src="cordova.js"></script>
+    </body>
+</html>

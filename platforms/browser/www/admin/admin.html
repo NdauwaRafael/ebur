@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Ebursary Mobile Application</title>
+
+        <!-- Include jQuery Mobile stylesheets -->
+        <link rel="stylesheet" href="../tools/jquery.mobile-1.4.5.js">
+
+        <!-- Include the jQuery library -->
+        <script src="../assets/jquery-3.2.1.js"></script>
+
+        <!-- Include the jQuery Mobile library -->
+        <script src="../tools/jquery.mobile-1.4.5.min.js"></script>
+        <!-- Include meta tag to ensure proper rendering and touch zooming -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Include jQuery Mobile stylesheets -->
+        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+        <!-- Include the jQuery library -->
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+        <!-- Include the jQuery Mobile library -->
+        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+      </head>
+    </head>
+    <body>
+<!--To use jquery mobile tools throughout the designs-->
+
+<div data-role="page" id="pageone">
+  <div data-role="header">
+    <h4>EBursary | Clerk | Login </h4>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="admin.html" data-icon="home">Home</a></li>
+        <li><a href="clerks/view.html" data-icon="user" >Clerks</a></li>
+        <li><a href="bursaries/view.html" data-icon="shop">Bursaries</a></li>
+        <li><a href="register.html" data-icon="user" >Register</a></li>
+
+      </ul>
+    </div>
+
+  </div>
+
+  <div data-role="main" class="ui-content">
+            <h2>Admin Control Ebursary</h2>
+            <hr>
+            <ul data-role="listview" data-inset="true">
+              <li>
+                <a href="bursaries/add.html">
+                <img src="../icons/144/donate-144.png">
+                <h2>Add Bursaries</h2>
+                <p>List of bursaries and their categories.</p>
+                </a>
+              </li>
+
+              <li>
+                <a href="clerks/add.html">
+                <img src="../icons/144/conference_call-144.png">
+                <h2>Add Clerks</h2>
+                <p>People to review the bursary applicantions.</p>
+                </a>
+              </li>
+
+              <li>
+                <a href="#">
+                <img src="../icons/144/flow_chart-144.png">
+                <h2>Modify Users</h2>
+                <p>Revike priveleges to some users.</p>
+                </a>
+              </li>
+            </ul>
+  </div>
+
+  <div data-role="footer">
+    <h1>2017 | Ebursary | All Rights </h1>
+  </div>
+</div>
+
+
+        <script type="text/javascript" src="cordova.js"></script>
+    </body>
+</html>

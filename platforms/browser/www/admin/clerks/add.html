@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Ebursary Mobile Application</title>
+        <link rel="stylesheet" href="../../tools/jquery.mobile-1.4.5.css">
+        <script src="../../assets/js/jquery-3.2.1.js"></script>
+        <script src="../../tools/jquery.mobile-1.4.5.js"></script>
+
+        <!-- Include jQuery Mobile stylesheets -->
+        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+        <!-- Include the jQuery library -->
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+        <!-- Include the jQuery Mobile library -->
+        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+      </head>
+    </head>
+    <body>
+<!--To use jquery mobile tools throughout the designs-->
+
+<div data-role="page" id="pageone">
+  <div data-role="header" data-theme="b">
+    <h1>EBursary | Applicant</h1>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="../admin.html" data-icon="Home">Home</a></li>
+        <li><a href="register.html" data-icon="user" >Clerks</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div data-role="main" class="ui-content">
+
+    <form method="post" id="regform" action="/action_page_post.php">
+      <label for="fname">First name:</label>
+      <input type="text" name="fname" id="fname">
+
+      <label for="lname">Last name:</label>
+      <input type="text" name="lname" id="lname">
+
+      <fieldset data-role="controlgroup">
+      <legend>Gender:</legend>
+      <div style="color: red;" id="gender_status"></div>
+      <label for="male">Male</label>
+      <input type="radio" name="gender" id="male" value="male">
+      <label for="female">Female</label>
+      <input type="radio" name="gender" id="female" value="female">
+      </fieldset>
+
+      <label for="idno">Identity Number:</label>
+      <input type="number" name="idno" id="idno">
+
+      <label for="email">Email Address:</label>
+      <input type="email" name="email" id="email">
+
+      <label for="phone">Phone Number:</label>
+      <input type="number" name="phone" id="phone">
+
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password">
+       <div style="color: red;" id="password_status"></div>
+      <label for="cpassword">Confirm Password:</label>
+      <input type="password" name="password" id="cpassword">
+
+
+      <input id="register_applicant" type="button" value="Register">
+    <a href="#pagetwo" data-transition="flip" id="btn">Flip to Dialog Page</a>
+    </form>
+
+  </div>
+
+  <div data-role="footer">
+    <h1>2017 | Ebursary | All Rights</h1>
+  </div>
+</div>
+
+<div data-role="page" data-dialog="true" id="pagetwo">
+  <div data-role="header">
+    <h1>Register Says!</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <p>Click on Go back To Exit this alert</p>
+    <a href="#pageone">Go to Register Page</a>
+      <hr>
+      <p><div id="feedback_status"></div></p>
+   </div>
+
+  <div data-role="footer" data-theme="b">
+    <h1>2017 | Ebursary | All Rights</h1>
+  </div>
+</div>
+<script type="text/javascript">
+
+  $("#register_applicant").click(function() {
+     var fname1 = $("#fname").val();
+      var lname1 = $("#lname").val();
+       var email1 = $("#email").val();
+       var gender1= $('input[name=gender]:checked', "#regform").val();
+         var idno1 = $("#idno").val();
+          var phone1 = $("#password").val();
+           var pass1 = $("#password").val();
+            var cpass1 = $("#cpassword").val();
+
+            if ($('#male').is(':checked') || $('#female').is(':checked')) {
+                $("#gender_status").html("");
+
+                   if (fname1==''||lname1=='' || email1==''|| idno1==''||phone1==''||pass1==''||cpass1=='') {
+
+                   }else {
+                             if (cpass1==pass1) {
+
+                               $.post("http://localhost/Ebursary/clerk/register.php",{fname:fname1, lname:lname1, idno:idno1, phone:phone1, pass:pass1,gender:gender1,email:email1 }, function(data) {
+                                     $("#btn").click();
+                                     $("#feedback_status").html(data);
+                                     if (data=='registered') {
+                                       $("#regform")[0].reset();
+                                     }
+                               });
+
+                             }else {
+                                $("#password_status").html('password do not match');
+
+                             }
+                   }
+
+
+
+
+
+
+
+            }else {
+            $("#gender_status").html("Gender is undefined");
+
+            }
+  })
+
+
+  $.get( "http://localhost/Ebursary/applicant/check.php", function( data ) {
+   var check = data;
+     if(check==1){
+         window.location.href='applicant.html';
+     }else{
+       return false;
+     }
+  });
+</script>
+
+        <script type="text/javascript" src="cordova.js"></script>
+    </body>
+</html>

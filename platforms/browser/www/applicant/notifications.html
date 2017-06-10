@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Ebursary Mobile Application</title>
+        <link rel="stylesheet" href="/assets/jquery.mobile-1.4.5.css">
+        <link rel="stylesheet" href="/assets/jquery.mobile.theme-1.4.5.css">
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/jquery.mobile-1.4.5.js"></script>
+       <script>
+         app.initialize();
+       </script>
+
+
+
+      </head>
+    </head>
+    <body>
+<!--To use jquery mobile tools throughout the designs-->
+
+<div data-role="page" id="pageone">
+  <div data-role="header" data-theme="b">
+    <h1>EBursary | Applicant</h1>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="../index.html" data-icon="home">Home</a></li>
+        <li><a href="register.html" data-icon="myicon-money" >Register</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div data-role="main" class="ui-content ui-content-b">
+
+    <ul data-role="listview" data-inset="true" data-split-theme="a" id="notifications_list">
+
+  </ul>
+
+  </div>
+
+  <div data-role="footer">
+    <h1>2017 | Ebursary | All Rights</h1>
+  </div>
+</div>
+
+<div data-role="page" data-dialog="true" id="pagetwo">
+  <div data-role="header">
+    <h1>Register Says!</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <p>Click on Go back To Exit this alert</p>
+    <a href="#pageone">Go to Register Page</a>
+      <hr>
+      <p><div id="feedback_status"></div></p>
+   </div>
+
+  <div data-role="footer" data-theme="b">
+    <h1>2017 | Ebursary | All Rights</h1>
+  </div>
+</div>
+<script type="text/javascript">
+      $.getJSON('http://localhost/Ebursary/applicant/notifications.php', { get_param: 'value' }, function(data) {
+        $("#bursary").html(data);
+          $.each(data, function(index, element) {
+             var id = element.id;
+             var responded_on = element.responded_on;
+             var remarks_made = element.remarks_made;
+             var amount_awarded = element.amount_awarded;
+             var applied_bursary = element.applied_bursary;
+             var educational_level = element.educational_level;
+             var school_name = element.school_name;
+             var country = element.country;
+             var status = element.status;
+
+       $("#notifications_list").append('\
+         <li  class="ui-li-has-thumb">\
+         <a id="apply" class="ui-btn ui-btn-icon-right ui-icon-carat-r">\
+         <img id="reqst_image'+id+'" src="../icons/48/mailbox_with_letter-48.png">\
+         <h4 style="white-space:normal !important; font-size: small;">'+applied_bursary+'</h4>\
+         <p style="white-space:normal !important; font-size: small;">Response date: <strong class="status" style="color:red;">'+responded_on+'</strong></p>\
+         <p style="white-space:normal !important; font-size: small;">Request is: <strong class="status" style="color:red; text-transform:uppercase;">'+status+'<strong></p></a></li>\ ');
+
+         if (status=='requested') {
+           $("#reqst_image"+id).attr("src","../icons/48/question-48.png");
+           $(".status").css("color", "blue");
+         }else if (status=='successful') {
+           $("#reqst_image"+id).attr("src","../icons/48/paid-96.png");
+           $(".status").css("color", "green");
+         }if (status=='unsuccessful') {
+           $("#reqst_image"+id).attr("src","../icons/48/private_emoticon-48.png");
+           $(".status").css("color", "red");
+         }
+
+/*      $("#apply"+id).click(function(){
+      $("#btn").click();
+      $("#ttl").html('<h1 class="ui-title" role="heading">Apply For '+name+'</h1>');
+      $("#applied_bursary").val(name);
+      $("#bursary_id").html(id);
+    })*/
+
+
+          });
+      });
+</script>
+
+        <script type="text/javascript" src="cordova.js"></script>
+    </body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Ebursary Mobile Application</title>
+        <link rel="stylesheet" href="../../tools/jquery.mobile-1.4.5.css">
+        <script src="../../assets/js/jquery-3.2.1.js"></script>
+        <script src="../../tools/jquery.mobile-1.4.5.js"></script>
+
+        <!-- Include jQuery Mobile stylesheets -->
+        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+        <!-- Include the jQuery library -->
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+        <!-- Include the jQuery Mobile library -->
+        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+
+
+      </head>
+    </head>
+    <body>
+<!--To use jquery mobile tools throughout the designs-->
+
+<div data-role="page" id="pageone">
+  <div data-role="header" data-theme="b">
+    <h1>EBursary | Applicant</h1>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="../admin.html" data-icon="home">Home</a></li>
+        <li><a href="view.html" data-icon="user" >View Bursaries</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <h5>Add a Bursary:</h5>
+    <hr>
+    <form method="post" id="regform" action="/action_page_post.php">
+      <label for="fname">Name of Bursary Fund:</label>
+      <input type="text" name="name" id="name">
+
+      <label for="lname">Application Deadline:</label>
+      <input type="date" id="deadline" >
+
+
+      <fieldset class="ui-field-contain">
+        <label for="day">Eligible Applicants:</label>
+        <select name="day" id="eligible">
+          <optgroup label="High School">
+            <option value="High School Orphans">High School Orphans</option>
+            <option value="High School Top Achievers">High School Top Achievers</option>
+            <option value="High School Poor Students">High School Poor Students</option>
+            <option value="All High School Students">All High School Students</option>
+          </optgroup>
+          <optgroup label="Tertiary School">
+            <option value="Tertiary School Orphans Students">Tertiary School Orphans</option>
+            <option value="Tertiary School Top Achievers Students">Tertiary School Top Achievers</option>
+            <option value="Tertiary School Poor Students">Tertiary School Poor Students</option>
+            <option value="All Tertiary School Students">All Tertiary School Students</option>
+          </optgroup>
+
+          <optgroup label="All Levels">
+            <option value="All Levels Orphans">Orphans</option>
+            <option value="All Levels Top Achievers">All Levels Top Achievers Students</option>
+            <option value="All Levels Poor Students">All Levels Poor Students</option>
+            <option value="All ">All</option>
+          </optgroup>
+        </select>
+      </fieldset>
+
+      <label for="amount">(Ksh. ) Amount:</label>
+      <input type="number" name="amount" id="amount">
+
+      <label for="location">Location Coverage:</label>
+      <input type="text" name="location" id="location">
+
+<div id="add_status" style="color: red;"></div>
+      <input id="register_bur" type="button" value="Add Now">
+    <a href="#pagetwo" data-transition="flip" id="btn"></a>
+    </form>
+
+  </div>
+
+  <div data-role="footer">
+    <h1>2017 | Ebursary | All Rights</h1>
+  </div>
+</div>
+
+<div data-role="page" data-dialog="true" id="pagetwo">
+  <div data-role="header">
+    <h1>ADD Bursary Says!</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <a href="#pageone">Go Add Bursary Page</a>
+      <hr>
+      <p><div id="feedback_status"></div></p>
+   </div>
+
+  <div data-role="footer" data-theme="b">
+    <h1>2017 | Ebursary | All Rights</h1>
+  </div>
+</div>
+<script type="text/javascript">
+
+  $("#register_bur").click(function() {
+     var name1 = $("#name").val();
+      var eligible1 = $("#eligible").val();
+       var deadline1 = $("#deadline").val();
+         var location1 = $("#location").val();
+
+
+                   if (name1==''||eligible1=='' || deadline1==''|| location1=='') {
+                       $("#add_status").html('Fill in All Required Fields');
+                   }else {
+                               $.post("http://localhost/Ebursary/bursary/add.php",{name:name1, deadline:deadline1, eligible:eligible1, location:location1}, function(data) {
+                                     $("#btn").click();
+                                     $("#feedback_status").html(data);
+                                     if (data=='Bursary Added Successfully Success') {
+                                       $("#regform")[0].reset();
+                                     }
+                               });
+
+                   }
+
+
+  })
+
+
+
+/*  $.get( "http://localhost/Ebursary/applicant/check.php", function( data ) {
+   var check = data;
+     if(check==1){
+         window.location.href='applicant.html';
+     }else{
+       return false;
+     }
+  });*/
+</script>
+
+        <script type="text/javascript" src="cordova.js"></script>
+    </body>
+</html>
