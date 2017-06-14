@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Ebursary Mobile Application</title>
+
+        <!-- Include the jQuery library -->
+        <script src="../assets/js/jquery.min.js"></script>
+
+        <!-- Include jQuery Mobile stylesheets -->
+        <link rel="stylesheet" href="../assets/css/jquery.mobile-1.4.5.min.css">
+
+        <!-- Include the jQuery Mobile library -->
+        <script src="../assets/js/jquery.mobile-1.4.5.min.js"></script>
+
+        <!-- Include the Meta Tag -->
+        <script src="profile.js"></script>
+
+        <!-- Include meta tag to ensure proper rendering and touch zooming -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+      </head>
+    </head>
+    <body>
+<!--To use jquery mobile tools throughout the designs-->
+
+<div data-role="page" id="pageone">
+  <div data-role="header">
+    <h4>EBursary | Clerk | Login </h4>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#" data-icon="home">Home</a></li>
+        <li><a href="applications.html" data-ajax="false" data-icon="bullets" >Applications</a></li>
+        <li><a href="#" data-ajax="false" data-icon="shop">Bursaries</a></li>
+        <li><a href="profile.html" data-icon="user" data-ajax="false" class="clerk_name" >Profile</a></li>
+
+      </ul>
+    </div>
+
+  </div>
+
+  <div data-role="main" class="ui-content">
+            <h2>Admin Control Ebursary</h2>
+            <hr>
+            <ul data-role="listview" data-inset="true">
+
+            </ul>
+  </div>
+
+  <div data-role="footer">
+    <h1>2017 | Ebursary | All Rights </h1>
+  </div>
+</div>
+
+
+        <script type="text/javascript" src="cordova.js"></script>
+<script>
+if (localStorage.getItem("clerk_email") === null) {
+window.location.href="login.html";
+}
+
+</script>
+    </body>
+</html>

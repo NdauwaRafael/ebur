@@ -4,11 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
         <title>Ebursary Mobile Application</title>
-        <link rel="stylesheet" href="/assets/css/jquery.mobile-1.4.5.min.css">
-        <script src="/assets/js/jquery.min.js"></script>
-        <script src="/assets/js/jquery.mobile-1.4.5.js"></script>
+        <link rel="stylesheet" href="assets/css/jquery.mobile-1.4.5.min.css">
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.mobile-1.4.5.js"></script>
 
-        <link rel="stylesheet" href="/assets/css/jquery.mobile.theme-1.4.5.min.css">
+        <link rel="stylesheet" href="assets/css/jquery.mobile.theme-1.4.5.min.css">
 
 
         <!-- Include meta tag to ensure proper rendering and touch zooming -->
@@ -34,9 +34,9 @@
     <div data-role="navbar">
       <ul>
         <li><a href="index.html" data-icon="home">Home</a></li>
-        <li><a href="applicant/applicant.html" data-icon="user" >Applicant</a></li>
-        <li><a href="clerk/clerk.html" data-icon="info">Clerk</a></li>
-        <li><a href="admin/admin.html" data-icon="Padlock">Admin</a></li>
+        <li><a href="applicant/applicant.html" data-ajax="false" data-icon="user" >Applicant</a></li>
+        <li><a href="clerk/clerk.html" data-ajax="false" data-icon="info">Clerk</a></li>
+        <li><a href="admin/admin.html" data-ajax="false" data-icon="Padlock">Admin</a></li>
       </ul>
     </div>
 
@@ -46,14 +46,14 @@
 
     <ul data-role="listview" data-inset="true">
           <li>
-            <a href="applicant/login.html">
+            <a href="applicant/login.html" data-ajax="false">
             <img src="icons/48/receive_cash-48.png">
             <h2>Apply For A Bursary</h2>
             <p>Apply for various existing bursaries offered by organisation near you.</p>
             </a>
           </li>
           <li>
-            <a href="clerk/login.html">
+            <a href="clerk/login.html" data-ajax="false">
             <img src="icons/48/money_bag-48.png">
             <h2>Manage Applications</h2>
             <p>Purely for Bursary reviewing clerks or other people that have clearance</p>
@@ -61,7 +61,7 @@
           </li>
 
           <li>
-            <a href="admin/login.html">
+            <a href="admin/login.html" data-ajax="false">
             <img src="icons/48/bill-48.png">
             <h2>Manage Application</h2>
             <p>Application administrators section.</p>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Ebursary Mobile Application</title>
+        <link rel="stylesheet" href="../assets/css/jquery.mobile-1.4.5.min.css">
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/jquery.mobile-1.4.5.min.js"></script>
+
+        <link rel="stylesheet" href="../assets/css/jquery.mobile.theme-1.4.5.min.css">
+
+
+        <!-- Include meta tag to ensure proper rendering and touch zooming -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+      </head>
+    </head>    <body>
+<!--To use jquery mobile tools throughout the designs-->
+
+<div data-role="page" id="pageone">
+  <div data-role="header" data-theme="b">
+    <h1>EBursary</h1>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="applicant.html" data-icon="home">Home</a></li>
+
+        <li><a id="logout_admin" data-icon="Padlock">Logout</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div data-role="main" class="ui-content">
+
+
+
+  </div>
+
+  <div data-role="footer" data-theme="b">
+    <h1>2017 | Ebursary | All Rights </h1>
+  </div>
+</div>
+
+
+        <script type="text/javascript" src="cordova.js"></script>
+<script>
+
+$("#logout_admin").click(function(){
+  var action1 = "admin";
+   $.post("http://localhost/Ebursary/logout.php",{action:action1},function(data){
+        if (data=='logged out') {
+          localStorage.clear();
+          window.location.href='../index.html';
+        }
+   });
+})
+
+</script>
+    </body>
+</html>

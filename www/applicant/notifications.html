@@ -4,10 +4,15 @@
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
         <title>Ebursary Mobile Application</title>
-        <link rel="stylesheet" href="/assets/jquery.mobile-1.4.5.css">
-        <link rel="stylesheet" href="/assets/jquery.mobile.theme-1.4.5.css">
-        <script src="/assets/js/jquery.min.js"></script>
-        <script src="/assets/jquery.mobile-1.4.5.js"></script>
+        <!-- Include the jQuery library -->
+        <script src="../assets/js/jquery-3.2.1.js"></script>
+        <script src="../assets/js/jquery.min.js"></script>
+
+        <!-- Include jQuery Mobile stylesheets -->
+        <link rel="stylesheet" href="../assets/css/jquery.mobile-1.4.5.min.css">
+
+        <!-- Include the jQuery Mobile library -->
+        <script src="../assets/js/jquery.mobile-1.4.5.min.js"></script>
        <script>
          app.initialize();
        </script>
@@ -25,15 +30,17 @@
     <div data-role="navbar">
       <ul>
         <li><a href="../index.html" data-icon="home">Home</a></li>
-        <li><a href="register.html" data-icon="myicon-money" >Register</a></li>
+        <li><a href="profile.html" data-icon="myicon-money" >Profile</a></li>
       </ul>
     </div>
 
   </div>
 
   <div data-role="main" class="ui-content ui-content-b">
-
-    <ul data-role="listview" data-inset="true" data-split-theme="a" id="notifications_list">
+    <form class="ui-filterable">
+      <input id="myFilter" data-type="search">
+    </form>
+    <ul data-role="listview" data-filter="true" data-input="#myFilter" data-inset="true" data-split-theme="a" id="notifications_list">
 
   </ul>
 
@@ -85,7 +92,7 @@
          if (status=='requested') {
            $("#reqst_image"+id).attr("src","../icons/48/question-48.png");
            $(".status").css("color", "blue");
-         }else if (status=='successful') {
+         }else if (status=='Awarded') {
            $("#reqst_image"+id).attr("src","../icons/48/paid-96.png");
            $(".status").css("color", "green");
          }if (status=='unsuccessful') {

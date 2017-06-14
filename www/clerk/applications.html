@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Include the jQuery library -->
+  <script src="../assets/js/jquery-3.2.1.js"></script>
+  <script src="../assets/js/jquery.min.js"></script>
+
+  <!-- Include jQuery Mobile stylesheets -->
+  <link rel="stylesheet" href="../assets/css/jquery.mobile-1.4.5.min.css">
+
+  <!-- Include the jQuery Mobile library -->
+  <script src="../assets/js/jquery.mobile-1.4.5.min.js"></script>
+
+
+</head>
+<body>
+
+<div data-role="page" id="pageone">
+  <div data-role="header" data-theme="b">
+    <h1>Ebursary | Applicant | Home</h1>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="clerk.html" data-icon="home">Home</a></li>
+        <li><a href="#" data-ajax="false" data-icon="shop">Applications</a></li>
+        <li><a href="profile.html" data-ajax="false" data-icon="user">Profile</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <h5>Top Bursury Offers You Qualify For:</h5>
+    <hr>
+    <form class="ui-filterable">
+      <input id="filterBursaries" data-type="search">
+    </form>
+    <ul data-role="listview" data-inset="true" data-filter="true" data-input="#filterBursaries" id="bursary">  </ul>
+
+  </div>
+
+<a href="#applicants" data-transition="flip" id="btn"></a>
+  <div data-role="footer" data-theme="b">
+    <h1>2017 | Ebursary | All Rights</h1>
+  </div>
+</div>
+
+<!--List of various applicants for each bursary-->
+<div data-role="page" id="applicants">
+  <div data-role="header" data-theme="b" id="ttl">
+      <h1 id="student_modal_title"></h1>
+  </div>
+
+  <div data-role="main" data-theme="b" class="ui-content">
+    <a href="applications.html" data-ajax="false" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-b ui-shadow ui-icon-back ui-corner-all ui-btn-icon-left">Applicants</a>
+      <hr>
+        <form class="ui-filterable">
+          <input id="myFilter" data-type="search">
+        </form>
+          <ul data-role="listview" data-inset="true" data-filter="true" data-input="#myFilter"  id="applicants_list_review">
+
+          </ul>
+   </div>
+
+  <div data-role="footer" data-theme="b">
+    <h1>2017 | Ebursary | All Rights</h1>
+  </div>
+</div>
+
+
+
+<!--Personal Details about Applicants And A for to give A responce-->
+
+<a href="#student_status" data-transition="flip" id="launch_student_status"></a>
+
+<div data-role="page"  id="student_status">
+  <div data-role="header">
+    <h1>Register Says!</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <a href="applications.html" data-ajax="false" id="go_bursaries">Go to Back</a>
+      <hr>
+      <h2>List With Icons:</h2>
+      <ul data-role="listview" data-inset="true">
+        <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-info"><img src="../icons/24/gender_neutral_user-24.png"  class="ui-li-icon">Name: <strong id="applicant_names_clerk"></strong></a></li>
+        <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-info"><img src="../icons/24/gender-24.png"  class="ui-li-icon">Gender: <strong id="applicant_gender_clerk"></strong></a></li>
+        <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-info"><img src="../icons/24/filled_message-24.png"  class="ui-li-icon">Email: <strong id="applicant_email_clerk"></strong></a></li>
+        <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-info"><img src="../icons/24/cell_phone-24.png"  class="ui-li-icon">Phone: <strong id="applicant_phone_clerk"></strong></a></li>
+        <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-info"><img src="../icons/24/parent_guardian-24.png"  class="ui-li-icon">Parents: <strong id="applicant_parents_clerk"></strong></a></li>
+        <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-info"><img src="../icons/24/worldwide_location-24.png"  class="ui-li-icon">FROM: <strong id="applicant_county_clerk"></strong></a></li>
+        <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-info"><img src="../icons/24/graduation_cap-24.png"  class="ui-li-icon">E Level: <strong id="applicant_education_clerk"></strong></a></li>
+        <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-info"><img src="../icons/24/school-24.png"  class="ui-li-icon">School: <strong id="applicant_school_clerk"></strong></a></li>
+        <li><a href="#" class="ui-btn ui-btn-icon-right ui-icon-info"><img src="../icons/24/QR_code-24.png"  class="ui-li-icon">Reg No: <strong id="applicant_regno_clerk"></strong></a></li>
+        <li id="my_id" style="visibility:hidden;"></li>
+      </ul>
+
+<h4>Respond to Application</h4>
+<hr>
+
+<form method="post" action="#">
+
+    <label for="day">Select Option To Award or Not</label>
+    <select name="day" data-native-menu="false" id="award_option" data-theme="b">
+      <option value="00">Select option</option>
+      <option value="Awarded">Award Amount</option>
+      <option value="Suspended">Suspend Applicantion</option>
+
+    </select>
+
+
+  <label for="fname">Amount To Award(Ksh):</label>
+  <input type="number" name="amount" id="amount" data-theme="a">
+
+
+  <label for="bio">Remarks:</label>
+  <textarea rows="35" name="remarks" id="remarks" placeholder="Give remarks to the Applicant" ></textarea>
+
+  <p><div id="review_now_status"></div></p>
+   <button type="button" id="proceed" class="ui-btn ui-btn-b ui-corner-all">Proceed</button>
+</form>
+   </div>
+
+  <div data-role="footer" data-theme="b">
+    <h1>2017 | Ebursary | All Rights</h1>
+  </div>
+</div>
+
+
+
+<script type="text/javascript" src="cordova.js"></script>
+<script>
+$(document).ready(function(){
+
+              $.getJSON('http://localhost/Ebursary/clerk/applied_bursaries.php', { get_param: 'value' }, function(data) {
+                $("#bursary").html(data);
+                  $.each(data, function(index, element) {
+                     var id = element.id;
+                     var name = element.name;
+                     var deadline = element.deadline;
+                     var added_on = element.added_on;
+                     var location = element.location;
+                     var eligible = element.eligible;
+
+               $("#bursary").append('\
+               <li  class="ui-li-has-thumb">'+'\
+               <a id="view'+id+'" class="ui-btn ui-btn-icon-right ui-icon-carat-r">\
+               <img src="../icons/48/purchase_order-48.png">\
+               <h4 style="white-space:normal !important; font-size: small;">'+name+'</h4>\
+               <p style="white-space:normal !important; font-size: small;">Bursary For '+eligible+'</p>\
+               <p>Deadline:<strong style="color:red;"> '+deadline+'</strong> </p>\
+               </a>'+'</li>');
+           $("#student_modal_title").text(name + "Applicants");
+            $("#view"+id).click(function(){
+
+            $("#btn").click();
+              $.post("http://localhost/Ebursary/clerk/applications.php",{id:id},function(applicants){
+                     $("#feedback_status").html(applicants);
+                     var respond = $.parseJSON(applicants);
+                      $.each(respond , function(index, them) {
+                          var student_id = them.id;
+                          var student_fname = them.firstname;
+                          var student_lname = them.lastname;
+                          var student_educational_level = them.educational_level;
+                          var student_school_name = them.school_name;
+                          var student_country = them.country;
+                          var student_parent_details = them.parent_details;
+                          var student_bio = them.bio;
+                          var student_student = them.student;
+                          var student_gender = them.gender;
+                          var student_regno = them.regno;
+                          var student_email = them.email;
+                          var student_phone = them.phone;
+
+
+
+                   $("#applicants_list_review").append('\
+                   <li  class="ui-li-has-thumb">'+'\
+                   <a id="applicant_student'+student_id+'" class="ui-btn ui-btn-icon-right ui-icon-carat-r">\
+                   <img src="../icons/48/user_male-48.png">\
+                   <h4 style="white-space:normal !important; font-size: small;">'+student_fname+' '+student_lname+'</h4>\
+                   <p>From:<strong style="color:red;"> '+student_country+'</strong> </p>\
+                   </a>'+'</li>');
+
+
+        $("#applicant_student"+student_id).click(function(){
+             $("#launch_student_status").click();
+
+             $("#applicant_names_clerk").html(student_fname +' '+student_lname);
+             $("#applicant_gender_clerk").html(student_gender);
+             $("#applicant_email_clerk").html(student_email);
+             $("#applicant_phone_clerk").html(student_phone);
+             $("#applicant_parents_clerk").html(student_parent_details);
+             $("#applicant_county_clerk").html(student_country);
+             $("#applicant_education_clerk").html(student_educational_level);
+             $("#applicant_school_clerk").html(student_school_name);
+             $("#applicant_regno_clerk").html(student_regno);
+             $("#my_id").html(student_id);
+
+        })
+
+                      })
+              })
+            })
+
+
+                  });
+              });
+
+
+$("#award_option").change(function(){
+  var award_option = $("#award_option").val();
+  if (award_option=='Awarded') {
+     $("#amount").prop('disabled', false);
+  }else {
+    $("#amount").prop('disabled', true);
+  }
+})
+
+
+$("#proceed").click(function(){
+  var id1 = $("#my_id").html();
+   var option1 = $("#award_option").val();
+   var amount1 = $("#amount").val();
+   var remarks1 = $("#remarks").val();
+
+if (id1=='') {
+   $("#review_now_status").html('No User Is Set For Review').css("color","red");
+} else {
+
+
+              if (option1=='00') {
+                  $("#review_now_status").html('Select Action To Proceed').css("color","red");
+              }else{
+                if (option1=='Awarded') {
+                         if (amount1==''||remarks=='') {
+                               $("#review_now_status").html('Fill in Remaining empty fields').css("color","red");
+                         }else {
+                           $.post("http://localhost/Ebursary/clerk/review.php",{id:id1,option:option1, amount:amount1, remarks:remarks1}, function(data) {
+                               $("#review_now_status").html(data);
+                           });
+                         }
+                }else {/*if award is not awarded*/
+                        if (remarks1=='') {
+                            $("#review_now_status").html('Fill in Remarks').css("color","red");
+                        }else {
+                            amount1='00';
+                          $.post("http://localhost/Ebursary/clerk/review.php",{id:id1,remarks:remarks1,amount:amount1, option:option1},function(data) {
+                             $("#review_now_status").html(data);
+                                   if (data=='Success') {
+                                     alert('You Were Successful in responding the application');
+                                     window.location.href="applications.html";
+                                   }
+                          });
+                        }
+                }
+              }
+
+}
+
+});
+
+})
+
+
+<!--  -->
+</script>
+</body>
+</html>

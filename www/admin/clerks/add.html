@@ -4,9 +4,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
         <title>Ebursary Mobile Application</title>
-        <link rel="stylesheet" href="../../tools/jquery.mobile-1.4.5.css">
+        <!-- Include the jQuery library -->
         <script src="../../assets/js/jquery-3.2.1.js"></script>
-        <script src="../../tools/jquery.mobile-1.4.5.js"></script>
+        <script src="../../assets/js/jquery.min.js"></script>
+
+        <!-- Include jQuery Mobile stylesheets -->
+        <link rel="stylesheet" href="../../assets/css/jquery.mobile-1.4.5.min.css">
+
+        <!-- Include the jQuery Mobile library -->
+        <script src="../../assets/js/jquery.mobile-1.4.5.min.js"></script>
+
 
         <!-- Include jQuery Mobile stylesheets -->
         <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
@@ -28,8 +35,8 @@
     <h1>EBursary | Applicant</h1>
     <div data-role="navbar">
       <ul>
-        <li><a href="../admin.html" data-icon="Home">Home</a></li>
-        <li><a href="register.html" data-icon="user" >Clerks</a></li>
+        <li><a href="../admin.html" data-icon="home">Home</a></li>
+        <li><a href="profile.html" data-icon="user" >Clerks</a></li>
       </ul>
     </div>
 
@@ -37,7 +44,7 @@
 
   <div data-role="main" class="ui-content">
 
-    <form method="post" id="regform" action="/action_page_post.php">
+    <form method="post" id="reg_clerk_frm" action="/action_page_post.php">
       <label for="fname">First name:</label>
       <input type="text" name="fname" id="fname">
 
@@ -62,15 +69,21 @@
       <label for="phone">Phone Number:</label>
       <input type="number" name="phone" id="phone">
 
+      <label for="area">Area Stationed:</label>
+      <input type="text" name="area" id="area">
+
+      <label for="phone">Role:</label>
+      <input type="text" name="role" id="role">
+
       <label for="password">Password:</label>
       <input type="password" name="password" id="password">
        <div style="color: red;" id="password_status"></div>
       <label for="cpassword">Confirm Password:</label>
       <input type="password" name="password" id="cpassword">
 
-
+<div id="status_responded"></div>
       <input id="register_applicant" type="button" value="Register">
-    <a href="#pagetwo" data-transition="flip" id="btn">Flip to Dialog Page</a>
+    <a href="#add_clerk_status" data-transition="flip" id="btn_add_clerk_status"></a>
     </form>
 
   </div>
@@ -80,16 +93,16 @@
   </div>
 </div>
 
-<div data-role="page" data-dialog="true" id="pagetwo">
+<div data-role="page" data-dialog="true" id="add_clerk_status">
   <div data-role="header">
-    <h1>Register Says!</h1>
+    <h1>Register Clerk Says!</h1>
   </div>
 
   <div data-role="main" class="ui-content">
     <p>Click on Go back To Exit this alert</p>
     <a href="#pageone">Go to Register Page</a>
       <hr>
-      <p><div id="feedback_status"></div></p>
+      <p><div id="feedback_clerk_reg"></div></p>
    </div>
 
   <div data-role="footer" data-theme="b">
@@ -102,32 +115,39 @@
      var fname1 = $("#fname").val();
       var lname1 = $("#lname").val();
        var email1 = $("#email").val();
-       var gender1= $('input[name=gender]:checked', "#regform").val();
+       var gender1= $('input[name=gender]:checked', "#reg_clerk_frm").val();
          var idno1 = $("#idno").val();
           var phone1 = $("#password").val();
+          var area1 = $("#area").val();
+          var role1 = $("#role").val();
            var pass1 = $("#password").val();
             var cpass1 = $("#cpassword").val();
 
-            if ($('#male').is(':checked') || $('#female').is(':checked')) {
-                $("#gender_status").html("");
 
-                   if (fname1==''||lname1=='' || email1==''|| idno1==''||phone1==''||pass1==''||cpass1=='') {
 
+                   if (fname1==''||lname1=='' || email1==''|| idno1==''||phone1==''||area1==''||role1==''||pass1==''||cpass1=='') {
+                       $("#status_responded").html('Fill In Empty, Fields Before Submitting The Clerk Details').css("color","red");
                    }else {
+                     if ($('#male').is(':checked') || $('#female').is(':checked')) {
+                         $("#gender_status").html("");
                              if (cpass1==pass1) {
 
-                               $.post("http://localhost/Ebursary/clerk/register.php",{fname:fname1, lname:lname1, idno:idno1, phone:phone1, pass:pass1,gender:gender1,email:email1 }, function(data) {
-                                     $("#btn").click();
-                                     $("#feedback_status").html(data);
-                                     if (data=='registered') {
-                                       $("#regform")[0].reset();
+                               $.post("http://localhost/Ebursary/clerk/register.php",{fname:fname1, lname:lname1, idno:idno1, phone:phone1, pass:pass1, gender:gender1,email:email1,area:area1, role:role1 }, function(data) {
+                                     $("#btn_add_clerk_status").click();
+                                     $("#feedback_clerk_reg").html(data).css("color", "red");
+                                     if (data=='clerk registered') {
+                                       $("#reg_clerk_frm")[0].reset();
+                                       $("#feedback_clerk_reg").html("Congratulations You Have Successfuly Registered A Clerk bursary reviewer.").css("color","green");
                                      }
                                });
 
                              }else {
-                                $("#password_status").html('password do not match');
+                                $("#password_status").html('password do not match').css("color","red");
 
                              }
+                   }else {
+                   $("#gender_status").html("Gender is undefined");
+
                    }
 
 
@@ -136,21 +156,13 @@
 
 
 
-            }else {
-            $("#gender_status").html("Gender is undefined");
-
             }
+
+
   })
 
 
-  $.get( "http://localhost/Ebursary/applicant/check.php", function( data ) {
-   var check = data;
-     if(check==1){
-         window.location.href='applicant.html';
-     }else{
-       return false;
-     }
-  });
+
 </script>
 
         <script type="text/javascript" src="cordova.js"></script>

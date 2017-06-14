@@ -2,18 +2,18 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval';"
+
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
         <title>Ebursary Mobile Application</title>
+        <!-- Include the jQuery library -->
+        <script src="../assets/js/jquery.min.js"></script>
 
         <!-- Include jQuery Mobile stylesheets -->
-        <link rel="stylesheet" href="../tools/jquery.mobile-1.4.5.js">
-
-        <!-- Include the jQuery library -->
-        <script src="../assets/jquery-3.2.1.js"></script>
+        <link rel="stylesheet" href="../assets/css/jquery.mobile-1.4.5.min.css">
 
         <!-- Include the jQuery Mobile library -->
-        <script src="../tools/jquery.mobile-1.4.5.min.js"></script>
-
+        <script src="../assets/js/jquery.mobile-1.4.5.min.js"></script>
 
       </head>
     </head>
@@ -25,8 +25,8 @@
     <h4>EBursary | Clerk | Login </h4>
     <div data-role="navbar">
       <ul>
-        <li><a href="../index.html" data-icon="Home">Home</a></li>
-        <li><a href="register.html" data-icon="user" >Register</a></li>
+        <li><a href="clerk.html" data-icon="home">Home</a></li>
+        <li><a href="register.html" data-icon="user" >Profile</a></li>
       </ul>
     </div>
 
@@ -37,14 +37,14 @@
     <form method="post" action="/action_page_post.php">
 
         <label for="email">Email:  </label>
-        <input type="email" name="email" id="email">
+        <input type="email" name="email" id="clerk_email">
 
         <label for="password">Password:  </label>
-        <input type="password" name="password" id="password">
+        <input type="password" name="password" id="clerk_password">
 
 
-
-      <input type="button" value="Login">
+<div id="clerk_login_status"></div>
+      <input type="button" value="Login" id="clerk_login_btn">
     </form>
 
   </div>
@@ -56,5 +56,31 @@
 
 
         <script type="text/javascript" src="cordova.js"></script>
+
+<script>
+$("#clerk_login_btn").click(function(){
+  var email1 = $("#clerk_email").val();
+  var password1 = $("#clerk_password").val();
+
+  if (email1=='' || password1=='') {
+     $("#clerk_login_status").html("Fill In Both Email And Password Fields Before Submiting Login Form").css("color","red");
+  } else {
+       $.post("http://localhost/Ebursary/clerk/login.php",{email:email1, password:password1}, function(data){
+           if (data=='authenticated') {
+              window.location.href="clerk.html";
+               window.localStorage.setItem("clerk_email", email1);
+           }else{
+             $("#clerk_login_status").html(data).css("color","red");
+           }
+       });
+  }
+});
+
+if (localStorage.getItem("clerk_email") === null) {
+
+} else{
+  window.location.href="clerk.html";
+}
+</script>
     </body>
 </html>

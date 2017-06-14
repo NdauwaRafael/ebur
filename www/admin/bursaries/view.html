@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="/assets/jquery.mobile-1.4.5.css">
-  <script src="/assets/js/jquery.min.js"></script>
-  <script src="/assets/jquery.mobile-1.4.5.js"></script>
+  <!-- Include the jQuery library -->
+  <script src="../../assets/js/jquery-3.2.1.js"></script>
+  <script src="../../assets/js/jquery.min.js"></script>
 
-  <link rel="stylesheet" href="../assets/jquery.mobile-1.4.5.css">
-  <script src="../assets/js/jquery.min.js"></script>
-  <script src="../assets/jquery.mobile-1.4.5.js"></script>
+  <!-- Include jQuery Mobile stylesheets -->
+  <link rel="stylesheet" href="../../assets/css/jquery.mobile-1.4.5.min.css">
 
-  <link rel="stylesheet" href="/tools/css/jquery.mobile.theme-1.4.5.min.css">
-
+  <!-- Include the jQuery Mobile library -->
+  <script src="../../assets/js/jquery.mobile-1.4.5.min.js"></script>
   <!-- Include meta tag to ensure proper rendering and touch zooming -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Include jQuery Mobile stylesheets -->
@@ -29,8 +28,6 @@
       <ul>
         <li><a href="../admin.html" data-icon="home">Home</a></li>
         <li><a href="view.html" data-icon="user" >Clerks</a></li>
-        <li><a href="view.html" data-icon="shop">Bursaries</a></li>
-        <li><a href="#" data-icon="user" >Register</a></li>
 
       </ul>
     </div>
@@ -39,7 +36,10 @@
   <div data-role="main" class="ui-content">
     <h5>Top Bursury Offers You Qualify For:</h5>
     <hr>
-    <ul data-role="listview" data-inset="true" id="bursary">  </ul>
+    <form class="ui-filterable">
+      <input id="myFilter" data-type="search">
+    </form>
+    <ul data-role="listview" data-filter="true" data-input="#myFilter" data-inset="true" id="bursary">  </ul>
 
   </div>
 
@@ -65,14 +65,13 @@
   <div data-role="main" class="ui-content" id="bursary_list_view">
     <a href="#pageone">Go to Back</a>
       <hr>
-      <p>Alist of Bursaries you have added to Ebursary for apllication by various students</p>
-      <h2 id="name"></h2>
+      <h2 id="applname"></h2>
       <ul data-role="listview" data-inset="true">
-        <li><a href="#"><img src="../../icons/purchase_order-24.png" alt="USA" class="ui-li-icon" ><strong id="deadl"></strong></a></li>
-        <li><a href="#"><img src="gb.png" alt="Great Britain" class="ui-li-icon">Great Britain</a></li>
-        <li><a href="#"><img src="finland.png" alt="Finland" class="ui-li-icon">Finland</a></li>
-        <li><a href="#"><img src="germany.png" alt="Germany" class="ui-li-icon">Germany</a></li>
-        <li><a href="#"><img src="france.png" alt="France" class="ui-li-icon">France</a></li>
+        <li><a href="#"><img src="../../icons/24/data_pending-24.png" class="ui-li-icon" >Deadline: <strong id="deadl"></strong></a></li>
+        <li><a href="#"><img src="../../icons/24/graduation_cap-24.png" class="ui-li-icon"> <strong id="busary"></strong></a></li>
+        <li><a href="#"><img src="../../icons/24/overtime-24.png" alt="Finland" class="ui-li-icon">Added On: <strong id="add_date"></strong></a></li>
+        <li><a href="#"><img src="../../icons/24/globe-24.png" alt="Germany" class="ui-li-icon">Location: <strong id="for"></strong></a></li>
+        <li><a href="#"><img src="../../icons/24/conference_call-24.png" alt="France" class="ui-li-icon">Eligible: <strong id="target"></strong></a></li>
       </ul>
 
    </div>
@@ -109,10 +108,11 @@ $(document).ready(function(){
                   $("#btn_view_bursary").click();
 
                  $("#deadl").html(deadline);
-                 $("#deadl").html(deadline);
-                 $("#deadl").html(deadline);
-                 $("#deadl").html(deadline);
-                 $("#deadl").html(deadline);
+                 $("#busary").html(name);
+                 $("#add_date").html(added_on);
+                 $("#for").html(location);
+                 $("#target").html(eligible);
+                 $("#applname").text(name);
 
 
 

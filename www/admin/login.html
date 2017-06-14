@@ -2,17 +2,18 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval';"
+
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
         <title>Ebursary Mobile Application</title>
+        <!-- Include the jQuery library -->
+          <script src="../assets/js/jquery.min.js"></script>
 
         <!-- Include jQuery Mobile stylesheets -->
-        <link rel="stylesheet" href="../tools/jquery.mobile-1.4.5.js">
-
-        <!-- Include the jQuery library -->
-        <script src="../assets/jquery-3.2.1.js"></script>
+        <link rel="stylesheet" href="../assets/css/jquery.mobile-1.4.5.css">
 
         <!-- Include the jQuery Mobile library -->
-        <script src="../tools/jquery.mobile-1.4.5.min.js"></script>
+        <script src="../assets/js/jquery.mobile-1.4.5.min.js"></script>
 
 
       </head>
@@ -21,12 +22,12 @@
 <!--To use jquery mobile tools throughout the designs-->
 
 <div data-role="page" id="pageone">
-  <div data-role="header">
+  <div data-role="header" data-theme="b">
     <h4>EBursary | Admin | Login </h4>
     <div data-role="navbar">
       <ul>
-        <li><a href="../index.html" data-icon="Home">Home</a></li>
-        <li><a href="register.html" data-icon="user" >Register</a></li>
+        <li><a href="../index.html" data-ajax="false" data-icon="home">Home</a></li>
+        <li><a href="#" data-icon="user" >...</a></li>
       </ul>
     </div>
 
@@ -37,14 +38,14 @@
     <form method="post" action="/action_page_post.php">
 
         <label for="email">Email:  </label>
-        <input type="email" name="email" id="email">
+        <input type="email" name="email" id="admin_email">
 
         <label for="password">Password:  </label>
-        <input type="password" name="password" id="password">
+        <input type="password" name="password" id="admin_password">
 
 
 <div id="admin_login_status" style="color: red;"></div>
-      <input type="button" value="Login" id="login_admin_btn">
+      <input type="button" value="Login Admin" id="login_admin_btn">
     </form>
 
   </div>
@@ -58,23 +59,30 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script>
            $("#login_admin_btn").click(function() {
-              var email1 = $("#email").val();
-              var password1 = $("#password").val();
+              var admin_email1 = $("#admin_email").val();
+              var admin_password1 = $("#admin_password").val();
 
-              if (password1=='' || email1=='') {
-
+              if (admin_password1=='' || admin_email1=='') {
+                  $("#admin_login_status").html('Fill in Email And Password Fields Before Submitting');
               }else {
-                $.post("", {email:email1, password:password1},function(data) {
-                      if (data='authenticated') {
+                $.post("http://localhost/Ebursary/admin/login.php", {email:admin_email1, password:admin_password1},function(data) {
+                      if (data=='admin loggedin') {
                           window.location.href="admin.html";
+                          window.localStorage.setItem("admin_email", admin_email1);
                       }else {
                         $("#admin_login_status").html(data);
                       }
-                })
+                });
               }
 
 
-           })
+           });
+
+           if (localStorage.getItem("admin_email") === null) {
+
+           } else{
+             window.location.href="admin.html";
+           }
         </script>
     </body>
 </html>

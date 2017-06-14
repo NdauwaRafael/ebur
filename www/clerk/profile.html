@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Ebursary Mobile Application</title>
+
+        <!-- Include the jQuery library -->
+        <script src="../assets/js/jquery.min.js"></script>
+
+        <!-- Include jQuery Mobile stylesheets -->
+        <link rel="stylesheet" href="../assets/css/jquery.mobile-1.4.5.min.css">
+
+        <!-- Include the jQuery Mobile library -->
+        <script src="../assets/js/jquery.mobile-1.4.5.min.js"></script>
+
+        <!-- Include the Meta Tag -->
+        <script src="profile.js"></script>
+
+        <!-- Include meta tag to ensure proper rendering and touch zooming -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+      </head>
+    </head>
+    <body>
+<!--To use jquery mobile tools throughout the designs-->
+
+<div data-role="page" id="pageone">
+  <div data-role="header">
+    <h4>EBursary | Clerk | Profile </h4>
+    <div data-role="navbar">
+      <ul>
+        <li><a href="clerk.html" data-icon="home">Home</a></li>
+        <li><a href="profile.html" data-icon="user" class="clerk_name" >Profile</a></li>
+
+      </ul>
+    </div>
+
+  </div>
+
+  <div data-role="main" class="ui-content">
+            <h2 id="profile_title"></h2>
+            <hr>
+
+            <ul data-role="listview" data-inset="true">
+              <li><a href="#"><img src="../icons/24/gender_neutral_user-24.png" class="ui-li-icon" >Name: <strong id="profile_name"></strong></a></li>
+              <li><a href="#"><img src="../icons/24/gender-24.png" class="ui-li-icon">Gender <strong id="profile_gender"></strong></a></li>
+              <li><a href="#"><img src="../icons/24/card_in_use-24.png"  class="ui-li-icon">IdNo: <strong id="profile_idno"></strong></a></li>
+              <li><a href="#"><img src="../icons/24/address_book-24.png"  class="ui-li-icon">Email: <strong id="profile_email"></strong></a></li>
+              <li><a href="#"><img src="../icons/24/cell_phone-24.png"  class="ui-li-icon">Mobile: <strong id="profile_phone"></strong></a></li>
+              <li><a href="#"><img src="../icons/24/marker-24.png"  class="ui-li-icon">Stationed: <strong id="profile_area"></strong></a></li>
+              <li><a href="#"><img src="../icons/24/check_book-24.png"  class="ui-li-icon">Role: <strong id="profile_role"></strong></a></li>
+            </ul>
+
+<a id="logout_clerk" class="ui-btn ui-btn-inline ui-shadow ui-corner-all"><img src="../icons/24/shutdown-24.png" >Logout</a>
+  </div>
+
+  <div data-role="footer">
+    <h1>2017 | Ebursary | All Rights </h1>
+  </div>
+</div>
+
+
+        <script type="text/javascript" src="cordova.js"></script>
+<script>
+$("#logout_clerk").click(function(){
+  var action1 = "clerk";
+   $.post("http://localhost/Ebursary/logout.php",{action:action1},function(data){
+        if (data=='logged out') {
+          localStorage.clear();
+          window.location.href='../index.html';
+        }
+   });
+})
+</script>
+
+    </body>
+</html>

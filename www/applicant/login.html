@@ -2,20 +2,15 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval';"
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
         <title>Ebursary Mobile Application</title>
 
-        <link rel="stylesheet" href="/assets/jquery.mobile-1.4.5.css">
-        <script src="/assets/js/jquery.min.js"></script>
-        <script src="/assets/jquery.mobile-1.4.5.js"></script>
-        <!-- Include jQuery Mobile stylesheets -->
-        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="../assets/css/jquery.mobile-1.4.5.min.css">
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/jquery.mobile-1.4.5.js"></script>
 
-        <!-- Include the jQuery library -->
-        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-        <!-- Include the jQuery Mobile library -->
-        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <link rel="stylesheet" href="../assets/css/jquery.mobile.theme-1.4.5.min.css">
 
 
       </head>
@@ -28,7 +23,7 @@
     <h4>EBursary | Applicant | Login </h4>
     <div data-role="navbar">
       <ul>
-        <li><a href="../index.html" data-icon="Home">Home</a></li>
+        <li><a href="../index.html" data-icon="home">Home</a></li>
         <li><a href="register.html" data-icon="user" >Register</a></li>
       </ul>
     </div>
@@ -40,10 +35,10 @@
     <form method="post" >
 
         <label for="email">Email:  </label>
-        <input type="email" name="email" id="email">
+        <input type="email" name="email" id="appli_email">
 
         <label for="password">Password:  </label>
-        <input type="password" name="password" id="password">
+        <input type="password" name="password" id="appli_password">
 
 <div style="color:red;" id="login_status"></div>
 
@@ -61,8 +56,8 @@
         <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript">
   $("#login_btn").click(function(){
-    var email1 = $("#email").val();
-    var password1 = $("#password").val();
+    var email1 = $("#appli_email").val();
+    var password1 = $("#appli_password").val();
 
     if (email1=='' || password1=='') {
        $("#login_status").html("Fill In Both Email And Password Fields Before Submiting Login Form");
@@ -71,8 +66,6 @@
              if (data=='authenticated') {
                 window.location.href="applicant.html";
                  window.localStorage.setItem("applicant_email", email1);
-                var loggedin_applicant_email =window.localStorage.getItem("applicant_email");
-                alert(loggedin_applicant_email);
              }else{
                $("#login_status").html(data);
              }
